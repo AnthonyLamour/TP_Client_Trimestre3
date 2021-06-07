@@ -79,7 +79,7 @@ nav {
     top: 0;
     left: 0;
     /*bordure solide de 2 pixels blanche*/
-    border: solid 2px white;
+    border: solid 2px #67126e;
     /*couleur de background noire*/
     background-color: black;
     /*épaisseur de 10%*/
@@ -97,7 +97,7 @@ nav {
     /*hauteur 10% de l'écran*/
     height: 10vh;
     /*bordure blanche solid de 1 pixel*/
-    border: solid white 1px;
+    border: solid #67126e 1px;
     /*couleur de background noir*/
     background-color: black;
     /*couleur de texte blanche*/
@@ -107,13 +107,7 @@ nav {
 /*modification du CSS des objets d'id ClientTable*/
 #ClientTable{
     /*marge gauche de 15%*/
-    margin-left:15vw;
-}
-
-/*modification du CSS des objets d'id ClientTableSansID*/
-#ClientTableSansID {
-    /*marge gauche de 15%*/
-    margin-left: 20vw;
+    margin-left:20vw;
 }
 
 /*modification du CSS des objets input et select*/
@@ -136,6 +130,8 @@ input, select {
     background-color: black;
     /*couleur de texte blanche*/
     color: white;
+    /*bordure*/
+    border: inset 5px #67126e;
 }
 
 /*modification du CSS des span*/
