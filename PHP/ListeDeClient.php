@@ -19,10 +19,10 @@
 
     <nav>
         <h3>Menu de navigation :</h3>
-        <a href="../index.html" class="navLink" >Accueil</a><br/>
-        <a href="AjouterClients.php" class="navLink" >Ajout clients</a><br/>
-        <a href="SuppressionClients.php" class="navLink" >Suppression clients</a><br/>
-        <a href="ModifierClients.php" class="navLink" >Modification clients</a><br/>
+        <a href="accueil" class="navLink" >Accueil</a><br/>
+        <a href="Ajouter-Clients" class="navLink" >Ajout clients</a><br/>
+        <a href="Suppression-Clients" class="navLink" >Suppression clients</a><br/>
+        <a href="Modifier-Clients" class="navLink" >Modification clients</a><br/>
     </nav>
     
     <!--titre principal de la page-->

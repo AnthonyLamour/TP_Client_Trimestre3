@@ -21,10 +21,10 @@
 
     <nav>
         <h3>Menu de navigation :</h3>
-        <a href="../index.html" class="navLink" >Accueil</a><br/>
-        <a href="ListeDeClient.php" class="navLink" >Récupération clients</a><br/>
-        <a href="AjouterClients.php" class="navLink" >Ajout clients</a><br/>
-        <a href="ModifierClients.php" class="navLink" >Modification clients</a><br/>
+        <a href="accueil" class="navLink" >Accueil</a><br/>
+        <a href="Liste-De-Clients" class="navLink" >Récupération clients</a><br/>
+        <a href="Ajouter-Clients" class="navLink" >Ajout clients</a><br/>
+        <a href="Modifier-Clients" class="navLink" >Modification clients</a><br/>
     </nav>
     
     <!--titre principal de la page-->
@@ -107,7 +107,7 @@
                     }
                 };
                 //ouverture du fichier XML
-                xhttp.open("GET", "SupprimerUnClient.php?id=" + dbParam, true);
+                xhttp.open("GET", "PHP/SupprimerUnClient.php?id=" + dbParam, true);
                 //envoi de la requète
                 xhttp.send();
             }

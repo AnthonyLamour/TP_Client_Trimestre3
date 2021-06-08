@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteRule ^accueil$   /index.html [L]
+
+RewriteRule ^Modifier-Clients$   /PHP/ModifierClients.php [L]
+
+RewriteRule ^Suppression-Clients$   /PHP/SuppressionClients.php [L]
+
+RewriteRule ^Ajouter-Clients$   /PHP/AjouterClients.php [L]
+
+RewriteRule ^Liste-De-Clients$   /PHP/ListeDeClient.php [L]
