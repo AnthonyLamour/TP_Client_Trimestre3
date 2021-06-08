@@ -1,7 +1,7 @@
-<?php
+ï»¿<?php
 	include_once 'ClassClient.php';
 
-	//création de l'objet PHP Client
+	//crÃ©ation de l'objet PHP Client
     class GestionFichierTmp
 	{
 
@@ -17,7 +17,7 @@
 						if($this->IsActionValid($arguments[0]))
 						{
 							if($arguments[0]=="Read"){
-								$this->AddLine("Récupération de la liste des clients.");
+								$this->AddLine("RÃ©cupÃ©ration de la liste des clients.");
 							}
 						}
 						break;
@@ -27,7 +27,7 @@
 							switch($arguments[0])
 							{
 								case "Create" :
-									$tmpText="Création du client ".$arguments[1]->Get_NCLI()." ".$arguments[1]->Get_NOM();
+									$tmpText="CrÃ©ation du client ".$arguments[1]->Get_NCLI()." ".$arguments[1]->Get_NOM();
 									$this->AddLine($tmpText);
 									break;
 								case "Update" :
@@ -89,8 +89,9 @@
 			fclose($myfile);
 			$fileContent = file_get_contents ($fileName);
 			$newLine = "Le ".date("d m Y");
-			$newLine = $newLine." à ".date("H:i");
+			$newLine = $newLine." Ã  ".date("H:i");
 			$newLine = $newLine." : ".$text;
+			$newLine = mb_convert_encoding($newLine, 'UTF-8', 'OLD-ENCODING');
 			file_put_contents ($fileName, $newLine . "\n" . $fileContent);
 		}
 	}	
