@@ -141,3 +141,19 @@ span{
     /*couleur de texte rouge*/
     color:red;
 }
+
+/*modification du CSS des objets de class ErrorPrint*/
+.ErrorPrint {
+    /*épaisseur 50%*/
+    width: 50%;
+    /*alignement du texte à guauche*/
+    text-align: center;
+    /*couleur de background noir*/
+    background-color: black;
+    /*couleur de texte rouge*/
+    color: red;
+    /*bordure*/
+    border: inset 5px #67126e;
+    /*marge gauche de 10%*/
+    margin-left: 10vw;
+}

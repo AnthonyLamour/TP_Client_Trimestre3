@@ -85,6 +85,8 @@
 		private  function AddLine($text)
 		{
 			$fileName="../tmp/Journal_".date("d_m_Y").".tmp";
+			$myfile = fopen($fileName, "a") or die("Unable to open file!");
+			fclose($myfile);
 			$fileContent = file_get_contents ($fileName);
 			$newLine = "Le ".date("d m Y");
 			$newLine = $newLine." à ".date("H:i");
