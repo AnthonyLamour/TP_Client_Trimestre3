@@ -15,23 +15,29 @@
         $sql='insert into CLIENT (NCLI,NOM,ADRESSE,LOCALITE,CATEGORIE,COMPTE) 
               values ("'.$obj->NCLI.'","'.$obj->NOM.'","'.$obj->ADRESSE.'","'.$obj->LOCALITE.'","'.$obj->CATEGORIE.'",'.$obj->COMPTE.');';
     }
-    $conn->query($sql);
+    $conn->query($sql) === true;
+	if($conn->errorInfo()[0]!=0000)
+	{
+		echo json_encode($conn->errorInfo());
+	}
+	else
+	{
+		//récupération de tout les clients de la base
+		$sql = $conn->prepare("SELECT * FROM CLIENT ORDER BY NCLI DESC");
+		//exécution de la requête sql
+		$sql->execute();
+		//récupération du résultat de la requête sql
+		$clients = $sql->fetchAll();
 
-    //récupération de tout les clients de la base
-    $sql = $conn->prepare("SELECT * FROM CLIENT ORDER BY NCLI DESC");
-	//exécution de la requête sql
-    $sql->execute();
-	//récupération du résultat de la requête sql
-    $clients = $sql->fetchAll();
+		//initialisation du nouveau client
+		$currentClient = new Client();
+		$currentClient->Init_CLIENT($obj->NCLI,$obj->NOM,$obj->ADRESSE,$obj->LOCALITE,$obj->CATEGORIE,$obj->COMPTE);
 
-	//initialisation du nouveau client
-	$currentClient = new Client();
-    $currentClient->Init_CLIENT($obj->NCLI,$obj->NOM,$obj->ADRESSE,$obj->LOCALITE,$obj->CATEGORIE,$obj->COMPTE);
+		$GFichierTmp = new GestionFichierTmp();
+		$GFichierTmp->UpdateTmpFile("Create",$currentClient);
 
-	$GFichierTmp = new GestionFichierTmp();
-	$GFichierTmp->UpdateTmpFile("Create",$currentClient);
-
-	//renvoi du résultat sous forme d'objet JSON
-    echo json_encode($clients);
+		//renvoi du résultat sous forme d'objet JSON
+		echo json_encode($clients);
+	}
 	
 ?>

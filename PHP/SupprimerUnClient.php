@@ -22,17 +22,25 @@
     $sql='DELETE FROM CLIENT
           WHERE NCLI="'.$identifiant.'";';
     $conn->query($sql);
-    //récupération de tout les clients de la base
-    $sql = $conn->prepare("SELECT * FROM CLIENT ORDER BY NCLI DESC");
-	//exécution de la requête sql
-    $sql->execute();
-	//récupération du résultat de la requête sql
-    $clients = $sql->fetchAll();
 
-	$GFichierTmp = new GestionFichierTmp();
-	$GFichierTmp->UpdateTmpFile("Delete",$currentClient);
+	if($conn->errorInfo()[0]!=0000)
+	{
+		echo json_encode($conn->errorInfo());
+	}
+	else
+	{
+		//récupération de tout les clients de la base
+		$sql = $conn->prepare("SELECT * FROM CLIENT ORDER BY NCLI DESC");
+		//exécution de la requête sql
+		$sql->execute();
+		//récupération du résultat de la requête sql
+		$clients = $sql->fetchAll();
 
-	//renvoi du résultat sous forme d'objet JSON
-    echo json_encode($clients);
-	
+		$GFichierTmp = new GestionFichierTmp();
+		$GFichierTmp->UpdateTmpFile("Delete",$currentClient);
+
+		//renvoi du résultat sous forme d'objet JSON
+		echo json_encode($clients);
+	}
+
 ?>

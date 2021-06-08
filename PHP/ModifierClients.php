@@ -86,21 +86,21 @@
             xhttpC.onreadystatechange = function () {
                  //si la requête est prête
                  if (this.readyState == 4 && this.status == 200) {
-                    //récupération et parsage du résultat en JSON avec suppression du caractère vide correspondant à la validation de l'envoie
-                    var json = JSON.parse(this.responseText.substring(1));
+                    //récupération et parsage du résultat en JSON avec suppression des caractères vide correspondant à la validation de l'envoie
+					var i=0;
+					while(this.responseText[i]!="[")
+					{
+						i++;
+					}
+                    var json = JSON.parse(this.responseText.substring(i));
                     //création d'un nouveau formulaire
                     var newFieldset = document.createElement("fieldset");
                     newFieldset.setAttribute("id","ModifierClientContenuSub");
                     var newForm = document.createElement("form");
 
-					newSpan = document.createElement("span");
-                    newSpan.setAttribute("id","MessageErreurNCLI");
-                    newSpan.setAttribute("class","MessageErreur");
-                    newForm.appendChild(newSpan);
 					newInput=document.createElement("input");
-                    newInput.setAttribute("type","text");
+                    newInput.setAttribute("type","hidden");
                     newInput.setAttribute("id","NCLI");
-                    newInput.setAttribute("hidden",true);
                     newInput.setAttribute("value",clientAModifier);
                     newForm.appendChild(newInput);
 
@@ -110,6 +110,10 @@
                     newForm.appendChild(newLabel);
                     newSpan = document.createElement("span");
                     newSpan.setAttribute("id","MessageErreurNOM");
+                    newSpan.setAttribute("class","MessageErreur");
+                    newForm.appendChild(newSpan);
+					newSpan = document.createElement("span");
+                    newSpan.setAttribute("id","MessageErreurNCLI");
                     newSpan.setAttribute("class","MessageErreur");
                     newForm.appendChild(newSpan);
                     newInput=document.createElement("input");
@@ -275,117 +279,136 @@
                     xhttp.onreadystatechange = function () {
 				        //si la requête est prête
                         if (this.readyState == 4 && this.status == 200) {
-                            //création d'une nouvelle ligne du tableau
-                            var newLine = document.createElement("tr");
-                            //création d'une nouvelle colone du tableau
-                            var newCol = document.createElement("th");
-                            //set de l'attribut class de la case
-                            newCol.setAttribute("class", "TextCadre");
-                            //remplissage de la case
-                            newCol.innerHTML="Numéro  de client";
-                            //ajout de la case dans la ligne
-                            newLine.appendChild(newCol);
-                            //création d'une nouvelle colone du tableau
-                            var newCol = document.createElement("th");
-                            //set de l'attribut class de la case
-                            newCol.setAttribute("class", "TextCadre");
-                            //remplissage de la case
-                            newCol.innerHTML="Nom";
-                            //ajout de la case dans la ligne
-                            newLine.appendChild(newCol);
-                            //création d'une nouvelle colone du tableau
-                            var newCol = document.createElement("th");
-                            //set de l'attribut class de la case
-                            newCol.setAttribute("class", "TextCadre");
-                            //remplissage de la case
-                            newCol.innerHTML="Adresse";
-                            //ajout de la case dans la ligne
-                            newLine.appendChild(newCol);
-                            //création d'une nouvelle colone du tableau
-                            var newCol = document.createElement("th");
-                            //set de l'attribut class de la case
-                            newCol.setAttribute("class", "TextCadre");
-                            //remplissage de la case
-                            newCol.innerHTML="Localité";
-                            //ajout de la case dans la ligne
-                            newLine.appendChild(newCol);
-                            //création d'une nouvelle colone du tableau
-                            var newCol = document.createElement("th");
-                            //set de l'attribut class de la case
-                            newCol.setAttribute("class", "TextCadre");
-                            //remplissage de la case
-                            newCol.innerHTML="Catégorie";
-                            //ajout de la case dans la ligne
-                            newLine.appendChild(newCol);
-                            //création d'une nouvelle colone du tableau
-                            var newCol = document.createElement("th");
-                            //set de l'attribut class de la case
-                            newCol.setAttribute("class", "TextCadre");
-                            //remplissage de la case
-                            newCol.innerHTML="Compte";
-                            //ajout de la case dans la ligne
-                            newLine.appendChild(newCol);
-                            //ajout de la ligne dans le tableau
-                            newTable.appendChild(newLine);
-					        //récupération et parsage du résultat en JSON avec suppression du caractère vide correspondant à la validation de l'envoie
-                            var json = JSON.parse(this.responseText.substring(2));
-                            //pour chaque élément du JSON
-					        for (var i = 0; i < json.length; i++) {
-						        //création d'une nouvelle ligne du tableau
-                                newLine = document.createElement("tr");
-						        //création d'une nouvelle colone du tableau
-                                newCol = document.createElement("td");
-						        //set de l'attribut class de la case
-                                newCol.setAttribute("class", "TextCadre");
-						        //remplissage de la case
-                                newCol.innerHTML = json[i].NCLI;
-						        //ajout de la case dans la ligne
-                                newLine.appendChild(newCol);
-						        //création d'une nouvelle colone du tableau
-                                newCol = document.createElement("td");
-						        //set de l'attribut class de la case
-                                newCol.setAttribute("class", "TextCadre");
-						        //remplissage de la case
-                                newCol.innerHTML = json[i].NOM;
-						        //ajout de la case dans la ligne
-                                newLine.appendChild(newCol);
-						        //création d'une nouvelle colone du tableau
-                                newCol = document.createElement("td");
-						        //set de l'attribut class de la case
-                                newCol.setAttribute("class", "TextCadre");
-						        //remplissage de la case
-                                newCol.innerHTML = json[i].ADRESSE;
-						        //ajout de la case dans la ligne
-                                newLine.appendChild(newCol);
-						        //création d'une nouvelle colone du tableau
-                                newCol = document.createElement("td");
-						        //set de l'attribut class de la case
-                                newCol.setAttribute("class", "TextCadre");
-						        //remplissage de la case
-                                newCol.innerHTML = json[i].LOCALITE;
-						        //ajout de la case dans la ligne
-                                newLine.appendChild(newCol);
-						        //création d'une nouvelle colone du tableau
-                                newCol = document.createElement("td");
-						        //set de l'attribut class de la case
-                                newCol.setAttribute("class", "TextCadre");
-						        //remplissage de la case
-                                newCol.innerHTML = json[i].CATEGORIE;
-						        //ajout de la case dans la ligne
-                                newLine.appendChild(newCol);
-                                //création d'une nouvelle colone du tableau
-                                newCol = document.createElement("td");
-						        //set de l'attribut class de la case
-                                newCol.setAttribute("class", "TextCadre");
-						        //remplissage de la case
-                                newCol.innerHTML = json[i].COMPTE;
-						        //ajout de la case dans la ligne
-                                newLine.appendChild(newCol);
-						        //ajout de la ligne dans le tableau
-                                newTable.appendChild(newLine);
-                            }
-					        //ajout du tableau dans le div
-                            MainContent.appendChild(newTable);
+							//récupération et parsage du résultat en JSON avec suppression des caractères vide correspondant à la validation de l'envoie
+							var i=0;
+							while(this.responseText[i]!="[")
+							{
+								i++;
+							}
+							var json = JSON.parse(this.responseText.substring(i));
+							if(Object.keys(json).length == 3)
+							{
+								//création d'une nouvelle colone du tableau
+								var newError = document.createElement("p");
+								//set de l'attribut class de la case
+								newError.setAttribute("class", "ErrorPrint");
+								//remplissage de la case
+								newError.innerHTML=json[2];
+								//ajout de la case dans la ligne
+								MainContent.appendChild(newError);
+							}
+							else
+							{
+								//création d'une nouvelle ligne du tableau
+								var newLine = document.createElement("tr");
+								//création d'une nouvelle colone du tableau
+								var newCol = document.createElement("th");
+								//set de l'attribut class de la case
+								newCol.setAttribute("class", "TextCadre");
+								//remplissage de la case
+								newCol.innerHTML="Numéro  de client";
+								//ajout de la case dans la ligne
+								newLine.appendChild(newCol);
+								//création d'une nouvelle colone du tableau
+								var newCol = document.createElement("th");
+								//set de l'attribut class de la case
+								newCol.setAttribute("class", "TextCadre");
+								//remplissage de la case
+								newCol.innerHTML="Nom";
+								//ajout de la case dans la ligne
+								newLine.appendChild(newCol);
+								//création d'une nouvelle colone du tableau
+								var newCol = document.createElement("th");
+								//set de l'attribut class de la case
+								newCol.setAttribute("class", "TextCadre");
+								//remplissage de la case
+								newCol.innerHTML="Adresse";
+								//ajout de la case dans la ligne
+								newLine.appendChild(newCol);
+								//création d'une nouvelle colone du tableau
+								var newCol = document.createElement("th");
+								//set de l'attribut class de la case
+								newCol.setAttribute("class", "TextCadre");
+								//remplissage de la case
+								newCol.innerHTML="Localité";
+								//ajout de la case dans la ligne
+								newLine.appendChild(newCol);
+								//création d'une nouvelle colone du tableau
+								var newCol = document.createElement("th");
+								//set de l'attribut class de la case
+								newCol.setAttribute("class", "TextCadre");
+								//remplissage de la case
+								newCol.innerHTML="Catégorie";
+								//ajout de la case dans la ligne
+								newLine.appendChild(newCol);
+								//création d'une nouvelle colone du tableau
+								var newCol = document.createElement("th");
+								//set de l'attribut class de la case
+								newCol.setAttribute("class", "TextCadre");
+								//remplissage de la case
+								newCol.innerHTML="Compte";
+								//ajout de la case dans la ligne
+								newLine.appendChild(newCol);
+								//ajout de la ligne dans le tableau
+								newTable.appendChild(newLine);
+								//pour chaque élément du JSON
+								for (var i = 0; i < json.length; i++) {
+									//création d'une nouvelle ligne du tableau
+									newLine = document.createElement("tr");
+									//création d'une nouvelle colone du tableau
+									newCol = document.createElement("td");
+									//set de l'attribut class de la case
+									newCol.setAttribute("class", "TextCadre");
+									//remplissage de la case
+									newCol.innerHTML = json[i].NCLI;
+									//ajout de la case dans la ligne
+									newLine.appendChild(newCol);
+									//création d'une nouvelle colone du tableau
+									newCol = document.createElement("td");
+									//set de l'attribut class de la case
+									newCol.setAttribute("class", "TextCadre");
+									//remplissage de la case
+									newCol.innerHTML = json[i].NOM;
+									//ajout de la case dans la ligne
+									newLine.appendChild(newCol);
+									//création d'une nouvelle colone du tableau
+									newCol = document.createElement("td");
+									//set de l'attribut class de la case
+									newCol.setAttribute("class", "TextCadre");
+									//remplissage de la case
+									newCol.innerHTML = json[i].ADRESSE;
+									//ajout de la case dans la ligne
+									newLine.appendChild(newCol);
+									//création d'une nouvelle colone du tableau
+									newCol = document.createElement("td");
+									//set de l'attribut class de la case
+									newCol.setAttribute("class", "TextCadre");
+									//remplissage de la case
+									newCol.innerHTML = json[i].LOCALITE;
+									//ajout de la case dans la ligne
+									newLine.appendChild(newCol);
+									//création d'une nouvelle colone du tableau
+									newCol = document.createElement("td");
+									//set de l'attribut class de la case
+									newCol.setAttribute("class", "TextCadre");
+									//remplissage de la case
+									newCol.innerHTML = json[i].CATEGORIE;
+									//ajout de la case dans la ligne
+									newLine.appendChild(newCol);
+									//création d'une nouvelle colone du tableau
+									newCol = document.createElement("td");
+									//set de l'attribut class de la case
+									newCol.setAttribute("class", "TextCadre");
+									//remplissage de la case
+									newCol.innerHTML = json[i].COMPTE;
+									//ajout de la case dans la ligne
+									newLine.appendChild(newCol);
+									//ajout de la ligne dans le tableau
+									newTable.appendChild(newLine);
+								}
+								//ajout du tableau dans le div
+								MainContent.appendChild(newTable);
+							}
                         }
                     };
                     //ouverture du fichier XML
