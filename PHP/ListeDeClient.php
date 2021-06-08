@@ -35,7 +35,9 @@
             //connexion à la BDD grâce au fichier BDDconnect
             include 'BDDConnect.php';
             //importation de la class Client
-            include 'ClassClient.php';
+            include_once 'ClassClient.php';
+			//importation de la class Gestion de fichier temporaire
+			include 'ClassGestionFichierTmp.php';
             //récupération de tout les client de la base
             $sql = "SELECT * FROM CLIENT";
             //création d'un tableau
@@ -66,6 +68,8 @@
             }
             //fermeture du tableau
             echo"</table>";
+			$GFichierTmp = new GestionFichierTmp();
+			$GFichierTmp->UpdateTmpFile("Read");
         ?>
     </div>
 

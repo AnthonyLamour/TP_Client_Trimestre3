@@ -79,7 +79,6 @@
             DivFormulaireModification.innerHTML="";
             //convertion de l'objet JSON en chaine pour le passer en paramètre
 			var dbParam = document.getElementById("SelectedClient").value;
-			console.log(dbParam);
 			clientAModifier = document.getElementById("SelectedClient").value;
             //création d'une requête XMLHttpRequest
             var xhttpC = new XMLHttpRequest();
@@ -87,7 +86,6 @@
             xhttpC.onreadystatechange = function () {
                  //si la requête est prête
                  if (this.readyState == 4 && this.status == 200) {
-					console.log(this.responseText);
                     //récupération et parsage du résultat en JSON avec suppression du caractère vide correspondant à la validation de l'envoie
                     var json = JSON.parse(this.responseText.substring(1));
                     //création d'un nouveau formulaire
@@ -330,7 +328,7 @@
                             //ajout de la ligne dans le tableau
                             newTable.appendChild(newLine);
 					        //récupération et parsage du résultat en JSON avec suppression du caractère vide correspondant à la validation de l'envoie
-                            var json = JSON.parse(this.responseText.substring(1));
+                            var json = JSON.parse(this.responseText.substring(2));
                             //pour chaque élément du JSON
 					        for (var i = 0; i < json.length; i++) {
 						        //création d'une nouvelle ligne du tableau

@@ -80,6 +80,7 @@
                 xhttp.onreadystatechange = function () {
 				    //si la requête est prête
                     if (this.readyState == 4 && this.status == 200) {
+						console.log(this.responseText);
                         //création d'une nouvelle ligne du tableau
                         var newLine = document.createElement("tr");
                         //création d'une nouvelle colone du tableau
@@ -133,7 +134,7 @@
                         //ajout de la ligne dans le tableau
                         newTable.appendChild(newLine);
 					    //récupération et parsage du résultat en JSON avec suppression du caractère vide correspondant à la validation de l'envoie
-                        var json = JSON.parse(this.responseText.substring(1));
+                        var json = JSON.parse(this.responseText.substring(2));
                         //pour chaque élément du JSON
 					    for (var i = 0; i < json.length; i++) {
 						    //création d'une nouvelle ligne du tableau
